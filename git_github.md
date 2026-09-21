@@ -110,10 +110,63 @@ git merge main -m "message"
 ```
 **Merge conflict** arrives when same part of the same file changed differently in branches
 
+## Switching back branches
 
+```python
+git log --oneline
+git checkout commit-id #before doing this the exisitng branch should be staged and commited
+git diff commit_id_1 commit_id_2 #show changes bewtween commits
 
+```
+to exit from log files press **q**
 
+## Remote repository
 
-## Conclusion
+- **PUSH**: Sending local changes to the remote
+- **FETCH**: Bringing remote changes into your local repository, but not merging them yet
+- **PULL**: Fetching plus merging-so your working directory immediately reflects the remote changes
+PULL = FETCH + MERGE
 
-Summarize the main points here.
+```python
+git push origin main #orgin refers to remote repo and main is the branch
+git fetch #brings changes from remote repo but dont get appeared in your local file system
+git merge #changes appear in my local files
+git pull #performs both fetch and merge
+```
+
+When changes are taken place over a large files and reverting back
+```python
+git restore #undo local uncommited changes
+git restore .
+git restore --staged fileName #restore a staged file
+git restore --staged .
+```
+
+Temporarily set aside unfinished work, switch another branch to do something
+git doesnot allow to switch branchs before commit or stash
+git can store multiple stashes 
+```python
+git stash
+git stash pop #bring back the stash
+git stash list
+git stash apply stash@{0} #stash specific 
+git stash drop #drop the stash
+```
+```python
+git stash pop #stash is removed completely from the stash list and applied
+git stash apply #stash is applied and also stays in the stash list
+```
+Revert - used to undo the changes made in a previous commit, but instead of deleting that old commit, it creates a new one that reverses those changes
+```python
+git revert commit_id
+:wq
+```
+git reset and git revert -> reset deletes all previous commits, revert creates new commit instead of deleting
+
+**Rebase**: refelect changes carried out in another branch while working on the same branch
+
+```python
+git rebase branchName
+```
+**Pull request**: asking permission to merge your code base into the main
+
