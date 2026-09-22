@@ -28,3 +28,32 @@ Finance, economics, earth science, space exploration, biomedical engineering, co
 - 1980s Expert systems
 - 1987 - 1993: AI 'Chill'
 
+## Fairness
+
+- Allocation, if a gender or ethnicity for example is favored over another.
+- Quality of service. If you train the data for one specific scenario but reality is much more complex, it leads to a poor performing service. For instance, a hand soap dispenser that could not seem to be able to sense people with dark skin.
+- Denigration. To unfairly criticize and label something or someone. For example, an image labeling technology infamously mislabeled images of dark-skinned people as gorillas.
+- Over- or under- representation. The idea is that a certain group is not seen in a certain profession, and any service or function that keeps promoting that is contributing to harm.
+- Stereotyping. Associating a given group with pre-assigned attributes. For example, a language translation system between English and Turkish may have inaccuracies due to words with stereotypical associations to gender.
+
+## Tools and Techniques
+
+- Data: 
+    - Collect data. Keeping in mind the previous lesson on fairness in data analysis, collect your data with care. Be aware of the sources of this data, any inherent biases it might have, and document its origin.
+    - Prepare data. There are several steps in the data preparation process. You might need to collate data and normalize it if it comes from diverse sources.
+- Features and Target:
+    - A feature is a measurable property of your data. In many datasets it is expressed as a column heading like 'date' 'size' or 'color'. Your feature variable, usually represented as X in code, represents the input variable which will be used to train a model.
+    - A target is a thing you are trying to predict. Target, usually represented as y in code, represents the answer to the question you are trying to ask of your data
+- Feature Selection and Feature Extraction How do you know which variable to choose when building a model? You'll probably go through a process of feature selection or feature extraction to choose the right variables for the most performant model. 
+- Visualize your data
+- Split your dataset
+    - Training. This part of the dataset is fit to your model to train it. This set constitutes the majority of the original dataset.
+    - Testing. A test dataset is an independent group of data, often gathered from the original data, that you use to confirm the performance of the built model.
+    - Validating. A validation set is a smaller independent group of examples that you use to tune the model's hyperparameters, or architecture, to improve the model
+- Building a model
+    - Decide on a training method: Depending on your question and the nature of your data, you will choose a method to train it
+    - Train a model: Armed with your training data, you are ready to 'fit' it to create a model.
+    - Evaluate the model: Once the training process is complete (it can take many iterations, or 'epochs', to train a large model), you will be able to evaluate the model's quality by using test data to gauge its performance.
+    - Underfitting and overfitting are common problems that degrade the quality of the model, as the model fits either not well enough or too well. This causes the model to make predictions either too closely aligned or too loosely aligned with its training data. An overfit model predicts training data too well because it has learned the data's details and noise too well. An underfit model is not accurate as it can neither accurately analyze its training data nor data it has not yet 'seen'.
+- Parameter tuning: Once your initial training is complete, observe the quality of the model and consider improving it by tweaking its 'hyperparameters'.
+- Prediction: This is the moment where you can use completely new data to test your model's accuracy. In an 'applied' ML setting, where you are building web assets to use the model in production, this process might involve gathering user input (a button press, for example) to set a variable and send it to the model for inference, or evaluation.
