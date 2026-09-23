@@ -48,6 +48,9 @@ else:
 print("Done")
 
 #Re raising critical errors
+
+def func():
+    pass
 try:
     func()
 except Exception as e:
