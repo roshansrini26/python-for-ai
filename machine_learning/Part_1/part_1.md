@@ -59,7 +59,7 @@ Loss decreases as the performace gets better
 
 ## Models
 
-### K Nearest Neighbour
+## K Nearest Neighbour
 
 #### Euclidean Distance
 
@@ -77,7 +77,7 @@ $$
 
 - In a N-dimension the new point calculates the distances of other points which (k depends) to predict the probabilty of the outcome
 
-### Naive bayes theorem
+## Naive bayes theorem
 
 ### Conditional Probability
 
@@ -109,7 +109,7 @@ $$
 P(A_k \mid B) = \frac{P(B \mid A_k) \, P(A_k)}{\sum_{i=1}^{n} P(B \mid A_i) \, P(A_i)}
 $$
 
-### Logistic regression
+## Logistic regression
 
 ### From a Linear Model to the Sigmoid
 
@@ -181,5 +181,38 @@ P(y = 0 \mid \mathbf{x}) = 1 - \sigma(\mathbf{w}^\top \mathbf{x} + b)
 $$
 
 Predict class 1 when $p \geq 0.5$, which is equivalent to $z \geq 0$ — so the decision boundary $\mathbf{w}^\top \mathbf{x} + b = 0$ is a hyperplane.
+
+## Support Vector Machines
+
+An SVM separates two classes with a hyperplane $\mathbf{w}^\top \mathbf{x} + b = 0$, but
+unlike logistic regression it doesn't settle for *any* separating line — it picks the one
+sitting as far as possible from both classes. The gap between the boundary and the closest
+points is the **margin**, equal to $2/\|\mathbf{w}\|$, so maximising it is the same as
+minimising $\|\mathbf{w}\|^2$. Only those closest points, the **support vectors**, actually
+determine the boundary; everything else could be deleted without changing the answer. A wide
+margin matters because it leaves breathing room before an unseen point falls on the wrong
+side — it acts as regularisation. Since real data is rarely perfectly separable, slack
+variables allow some violations, and the constant $C$ sets how harshly those are punished:
+large $C$ means a narrow, overfitted margin, small $C$ a wider, more forgiving one.
+
+The **kernel trick** comes in when the classes can't be split by a straight line at all. Such
+data often becomes separable after mapping into a higher-dimensional space, but computing
+that mapping explicitly is expensive and sometimes impossible — the space can be infinite.
+The saving grace is that the SVM's dual formulation uses the training points only through
+inner products, so we can swap in a kernel $K(\mathbf{x}, \mathbf{x}') =
+\langle \phi(\mathbf{x}), \phi(\mathbf{x}') \rangle$ and get the geometry of that richer
+space without ever visiting it. RBF, $\exp(-\gamma\|\mathbf{x} - \mathbf{x}'\|^2)$, is the
+usual default; linear works well for high-dimensional sparse data like text. The problem
+stays convex throughout, so there are no local minima to worry about.
+
+The costs are real, though. Training scales roughly quadratically to cubically in the number
+of samples, which rules SVMs out past a hundred thousand or so rows. The model outputs a
+signed distance rather than a probability, so $P(y \mid \mathbf{x})$ needs Platt scaling
+bolted on afterwards. Results depend heavily on $C$, $\gamma$ and the kernel choice, all of
+which need searching, and features must be standardised first since kernels are
+distance-based. Worst of all for explainability: with a nonlinear kernel there are no
+coefficients to read, so you lose the feature-importance story that linear and tree models
+give you for free.
+
 
 
