@@ -5,6 +5,9 @@ https://python.datalumina.com/?utm_source=YouTube&utm_medium=Description&utm_cam
 
 ## Machine Learning / AI / DL
 
+### Machine learning for everybody
+https://www.youtube.com/watch?v=i_LwzRVP7bg 
+
 ### ML for Beginners
 - https://github.com/microsoft/ML-For-Beginners
 
